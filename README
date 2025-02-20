@@ -1,83 +1,83 @@
-# Melanoma Detection using CNN
+# 🩺 Melanoma Detection using CNN
 
-## Project Overview
-Melanoma is a highly aggressive type of skin cancer that accounts for 75% of skin cancer-related deaths. Early detection is crucial for effective treatment and improved survival rates. This project aims to develop a Convolutional Neural Network (CNN) model capable of accurately classifying melanoma from other dermatological conditions using image data. By leveraging deep learning techniques, the model can assist dermatologists in early detection, reducing manual diagnosis efforts.
-
-## Dataset
-The dataset used in this project consists of **2,357** images, categorized into **9 classes**:
-- Actinic keratosis
-- Basal cell carcinoma
-- Dermatofibroma
-- Melanoma
-- Nevus
-- Pigmented benign keratosis
-- Seborrheic keratosis
-- Squamous cell carcinoma
-- Vascular lesion
-
-### Download the dataset
-[Click here to download the dataset](https://drive.google.com/file/d/1xLfSQUGDl8ezNNbUkpuHOYvSpTyxVhCs/view)
-
-The dataset originates from the **International Skin Imaging Collaboration (ISIC)** and has been pre-sorted based on classification. However, there are slight imbalances in the number of images per class.
-
-## Project Pipeline
-1. **Data Reading & Understanding**
-   - Define paths for training and testing images.
-   - Load and preprocess images.
-   
-2. **Dataset Creation**
-   - Split the dataset into training and validation sets.
-   - Ensure images are resized to **180×180 pixels**.
-   - Set batch size to **32**.
-   
-3. **Dataset Visualization**
-   - Display sample images from each class.
-
-4. **Model Building & Training (Baseline Model)**
-   - Construct a **CNN model** for classification.
-   - Normalize pixel values between **0 and 1**.
-   - Choose an appropriate **optimizer and loss function**.
-   - Train the model for **~20 epochs**.
-   - Analyze model performance to check for underfitting or overfitting.
-
-5. **Data Augmentation & Improved Training**
-   - Apply data augmentation techniques to address underfitting/overfitting.
-   - Retrain the model on the augmented dataset for **~20 epochs**.
-   - Evaluate performance improvements.
-
-6. **Class Distribution Analysis**
-   - Identify the least represented class.
-   - Determine which classes dominate the dataset.
-
-7. **Handling Class Imbalance**
-   - Use the **Augmentor** library to balance class distribution.
-   - Generate synthetic samples for underrepresented classes.
-
-8. **Final Model Training on Balanced Data**
-   - Retrain the CNN model on the rectified dataset.
-   - Train for **~30 epochs**.
-   - Assess improvements in model generalization.
-
-## Key Findings
-- Analysis of class distribution to determine imbalance.
-- Model performance before and after augmentation.
-- Effectiveness of class balancing strategies in improving accuracy.
-- Identification of overfitting and underfitting issues with solutions.
-
-## Technologies Used
-- **Python** (TensorFlow/Keras, NumPy, Pandas, Matplotlib, OpenCV)
-- **Deep Learning** (Convolutional Neural Networks)
-- **Data Augmentation** (Keras ImageDataGenerator, Augmentor Library)
-
-## Conclusion
-This project demonstrates the potential of deep learning in **automating melanoma detection**, significantly aiding dermatologists in early diagnosis. Further enhancements can be explored by incorporating **transfer learning** or **ensemble models** to boost accuracy and reliability.
+## 📌 Project Overview
+Melanoma is a deadly form of skin cancer, accounting for **75% of skin cancer-related deaths**. Early detection is crucial, and this project aims to build a **Convolutional Neural Network (CNN)** to classify melanoma and other skin conditions using image data. This AI-powered approach can assist dermatologists in diagnosis, reducing manual effort.
 
 ---
-### Contributors
-- Your Name
-- Your Email
-- Your Organization
 
-### Acknowledgment
-This project is based on publicly available ISIC data and aims to contribute towards automated skin cancer detection research.
+## 📂 Dataset
+🔗 [Download the dataset](https://drive.google.com/file/d/1xLfSQUGDl8ezNNbUkpuHOYvSpTyxVhCs/view)  
+The dataset consists of **2,357 images**, categorized into **9 classes**:
+
+- 🟡 Actinic keratosis
+- 🔵 Basal cell carcinoma
+- 🟠 Dermatofibroma
+- 🔴 Melanoma
+- 🟢 Nevus
+- 🟣 Pigmented benign keratosis
+- ⚪ Seborrheic keratosis
+- 🔶 Squamous cell carcinoma
+- 🔷 Vascular lesion
+
+This dataset is sourced from the **International Skin Imaging Collaboration (ISIC)** and contains class imbalances.
+
+---
+
+## 🔄 Project Pipeline
+1️⃣ **Data Preparation** 📂  
+   - Load and preprocess images  
+   - Resize to **180×180 pixels**, batch size **32**  
+   
+2️⃣ **Dataset Visualization** 🎨  
+   - Display sample images from each class  
+   
+3️⃣ **Baseline Model Training** 🏗️  
+   - Build a CNN model  
+   - Normalize pixel values **(0 to 1)**  
+   - Train for **~20 epochs** and evaluate performance  
+   
+4️⃣ **Addressing Overfitting/Underfitting** 📊  
+   - Apply **data augmentation** and retrain the model  
+   - Train for **~20 epochs** again and analyze improvements  
+   
+5️⃣ **Class Distribution Analysis** 📉  
+   - Identify class imbalances  
+   
+6️⃣ **Handling Class Imbalance** ⚖️  
+   - Use **Augmentor** to balance dataset  
+   - Generate synthetic samples  
+   
+7️⃣ **Final Model Training** 🚀  
+   - Train on the rectified dataset for **~30 epochs**  
+   - Assess improvements in model performance  
+
+---
+
+## 🔍 Key Findings
+✅ Examined dataset class distribution  
+✅ Addressed underfitting/overfitting with augmentation  
+✅ Balanced the dataset with synthetic data  
+✅ Improved model accuracy and robustness  
+
+---
+
+## 🛠️ Technologies Used
+- 🐍 **Python** (TensorFlow/Keras, NumPy, Pandas, Matplotlib, OpenCV)
+- 🧠 **Deep Learning** (CNNs for image classification)
+- 📈 **Data Augmentation** (Keras ImageDataGenerator, Augmentor Library)
+
+---
+
+## 🎯 Conclusion
+This project showcases how **deep learning can assist in melanoma detection**, helping dermatologists with **faster and more accurate diagnoses**. Future improvements could involve **transfer learning** or **ensemble models** to further enhance accuracy.
+
+---
+
+## 👥 Contributors
+- ✨ Vinay Dodla
+- 📧 dodlavinay012@gmail.com
+
+
+## 🙌 Acknowledgment
+This project leverages **publicly available ISIC data** and contributes towards advancements in **AI-powered skin cancer detection**.
 
