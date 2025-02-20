@@ -1,73 +1,83 @@
+# Melanoma Detection using CNN
 
-**Problem statement:**
+## Project Overview
+Melanoma is a highly aggressive type of skin cancer that accounts for 75% of skin cancer-related deaths. Early detection is crucial for effective treatment and improved survival rates. This project aims to develop a Convolutional Neural Network (CNN) model capable of accurately classifying melanoma from other dermatological conditions using image data. By leveraging deep learning techniques, the model can assist dermatologists in early detection, reducing manual diagnosis efforts.
 
-To build a CNN based model which can accurately detect melanoma. Melanoma is a type of cancer that can be deadly if not detected early.
-It accounts for 75% of skin cancer deaths. A solution that can evaluate images and alert dermatologists about the presence of melanoma has the potential to reduce a lot of manual effort needed in diagnosis.
+## Dataset
+The dataset used in this project consists of **2,357** images, categorized into **9 classes**:
+- Actinic keratosis
+- Basal cell carcinoma
+- Dermatofibroma
+- Melanoma
+- Nevus
+- Pigmented benign keratosis
+- Seborrheic keratosis
+- Squamous cell carcinoma
+- Vascular lesion
 
+### Download the dataset
+[Click here to download the dataset](https://drive.google.com/file/d/1xLfSQUGDl8ezNNbUkpuHOYvSpTyxVhCs/view)
 
-You can download the dataset here
+The dataset originates from the **International Skin Imaging Collaboration (ISIC)** and has been pre-sorted based on classification. However, there are slight imbalances in the number of images per class.
 
-https://drive.google.com/file/d/1xLfSQUGDl8ezNNbUkpuHOYvSpTyxVhCs/view
+## Project Pipeline
+1. **Data Reading & Understanding**
+   - Define paths for training and testing images.
+   - Load and preprocess images.
+   
+2. **Dataset Creation**
+   - Split the dataset into training and validation sets.
+   - Ensure images are resized to **180×180 pixels**.
+   - Set batch size to **32**.
+   
+3. **Dataset Visualization**
+   - Display sample images from each class.
 
-The dataset consists of 2357 images of malignant and benign oncological diseases, which were formed from the International Skin Imaging Collaboration (ISIC). 
-All images were sorted according to the classification taken with ISIC, and all subsets were divided into the same number of images, with the exception of melanomas and moles, whose images are slightly dominant.
+4. **Model Building & Training (Baseline Model)**
+   - Construct a **CNN model** for classification.
+   - Normalize pixel values between **0 and 1**.
+   - Choose an appropriate **optimizer and loss function**.
+   - Train the model for **~20 epochs**.
+   - Analyze model performance to check for underfitting or overfitting.
 
+5. **Data Augmentation & Improved Training**
+   - Apply data augmentation techniques to address underfitting/overfitting.
+   - Retrain the model on the augmented dataset for **~20 epochs**.
+   - Evaluate performance improvements.
 
-**The data set contains the following diseases:**
+6. **Class Distribution Analysis**
+   - Identify the least represented class.
+   - Determine which classes dominate the dataset.
 
-Actinic keratosis
-Basal cell carcinoma
-Dermatofibroma
-Melanoma
-Nevus
-Pigmented benign keratosis
-Seborrheic keratosis
-Squamous cell carcinoma
-Vascular lesion 
+7. **Handling Class Imbalance**
+   - Use the **Augmentor** library to balance class distribution.
+   - Generate synthetic samples for underrepresented classes.
 
-**Project Pipeline**
+8. **Final Model Training on Balanced Data**
+   - Retrain the CNN model on the rectified dataset.
+   - Train for **~30 epochs**.
+   - Assess improvements in model generalization.
 
-Data Reading/Data Understanding → Defining the path for train and test images 
+## Key Findings
+- Analysis of class distribution to determine imbalance.
+- Model performance before and after augmentation.
+- Effectiveness of class balancing strategies in improving accuracy.
+- Identification of overfitting and underfitting issues with solutions.
 
-Dataset Creation→ Create train & validation dataset from the train directory with a batch size of 32. Also, make sure you resize your images to 180*180.
+## Technologies Used
+- **Python** (TensorFlow/Keras, NumPy, Pandas, Matplotlib, OpenCV)
+- **Deep Learning** (Convolutional Neural Networks)
+- **Data Augmentation** (Keras ImageDataGenerator, Augmentor Library)
 
-Dataset visualisation → Create a code to visualize one instance of all the nine classes present in the dataset 
+## Conclusion
+This project demonstrates the potential of deep learning in **automating melanoma detection**, significantly aiding dermatologists in early diagnosis. Further enhancements can be explored by incorporating **transfer learning** or **ensemble models** to boost accuracy and reliability.
 
-Model Building & training : 
-Create a CNN model, which can accurately detect 9 classes present in the dataset. While building the model, rescale images to normalize pixel values between (0,1).
-Choose an appropriate optimiser and loss function for model training
+---
+### Contributors
+- Your Name
+- Your Email
+- Your Organization
 
-Train the model for ~20 epochs
+### Acknowledgment
+This project is based on publicly available ISIC data and aims to contribute towards automated skin cancer detection research.
 
-Write your findings after the model fit. You must check if there is any evidence of model overfit or underfit.
-
-Chose an appropriate data augmentation strategy to resolve underfitting/overfitting 
-
-Model Building & training on the augmented data :
-
-Create a CNN model, which can accurately detect 9 classes present in the dataset. While building the model rescale images to normalize pixel values between (0,1).
-
-Choose an appropriate optimiser and loss function for model training
-
-Train the model for ~20 epochs
-
-Write your findings after the model fit, see if the earlier issue is resolved or not?
-
-Class distribution: Examine the current class distribution in the training dataset 
-
-- Which class has the least number of samples?
-
-
-- Which classes dominate the data in terms of the proportionate number of samples?
-
-Handling class imbalances: Rectify class imbalances present in the training dataset with Augmentor library.
-
-Model Building & training on the rectified class imbalance data :
-
-Create a CNN model, which can accurately detect 9 classes present in the dataset. While building the model, rescale images to normalize pixel values between (0,1).
-
-Choose an appropriate optimiser and loss function for model training
-
-Train the model for ~30 epochs
-
-Write your findings after the model fit, see if the issues are resolved or not?
