@@ -1,82 +1,22 @@
-# 🩺 Melanoma Detection using CNN
+# Melanoma Recognition
 
-## 📌 Project Overview
-Melanoma is a deadly form of skin cancer, accounting for **75% of skin cancer-related deaths**. Early detection is crucial, and this project aims to build a **Convolutional Neural Network (CNN)** to classify melanoma and other skin conditions using image data. This AI-powered approach can assist dermatologists in diagnosis, reducing manual effort.
+A CNN image classifier that sorts dermatology images into 9 skin lesion types (including melanoma), built as a deep-learning practice project around handling class imbalance and overfitting.
 
----
+## What this covers
+This project practices the full applied-CNN workflow on a small, imbalanced medical imaging dataset: building a baseline model, diagnosing overfitting/underfitting from training curves, using data augmentation to fix it, and using synthetic oversampling to fix class imbalance. It's a good example of iterating on a model based on what the metrics are actually telling you, rather than just running one training pass.
 
-## 📂 Dataset
-[📥 Download the dataset](https://drive.google.com/file/d/1xLfSQUGDl8ezNNbUkpuHOYvSpTyxVhCs/view)  
-The dataset consists of **2,357 images**, categorized into **9 classes**:
+## Tech Stack
+- Python, TensorFlow/Keras
+- NumPy, Pandas, Matplotlib
+- Augmentor (synthetic image oversampling)
+- Google Colab (GPU training)
 
-- 🔴 Actinic keratosis
-- 🟢 Basal cell carcinoma
-- 🔵 Dermatofibroma
-- 🔥 Melanoma
-- 🟡 Nevus
-- 🟣 Pigmented benign keratosis
-- ⚪ Seborrheic keratosis
-- 🟠 Squamous cell carcinoma
-- 🔷 Vascular lesion
+## Approach
+- **Dataset**: 2,239 training / 118 test images from the ISIC (International Skin Imaging Collaboration) skin cancer dataset, split across 9 classes (melanoma, nevus, basal cell carcinoma, actinic keratosis, dermatofibroma, pigmented benign keratosis, seborrheic keratosis, squamous cell carcinoma, vascular lesion). Images resized to 180x180, batch size 32.
+- **Baseline CNN** (3 conv blocks, 20 epochs): reached 84% training accuracy but only 52% validation accuracy — a clear overfitting signature (~32 point gap, rising validation loss).
+- **Data augmentation** (random flips/rotation/zoom added, 20 epochs): closed the overfitting gap (61% train vs. 54% val accuracy) but the model was now underfitting — both numbers too low, meaning more signal was needed rather than less variance.
+- **Class imbalance found**: raw training set ranged from 462 images (pigmented benign keratosis) down to 77 (seborrheic keratosis). Used the `Augmentor` library to generate synthetic samples (rotation, flips) and roughly balanced every class to 600-900+ images, growing the training set from 2,239 to 6,739 images.
+- **Final model** (augmentation + rebalanced data, 50 epochs): reached 82% training accuracy and 79% validation accuracy — no more overfitting or underfitting. Accuracy on the held-out test set was 44.9%, showing the real generalization gap between validation and a true unseen test set that's worth being upfront about in an interview.
 
-This dataset is sourced from the **International Skin Imaging Collaboration (ISIC)** and contains class imbalances.
-
----
-
-## 🔄 Project Pipeline
-1️⃣ **Data Preparation**  
-   - Load and preprocess images  
-   - Resize to **180×180 pixels**, batch size **32**  
-   
-2️⃣ **Dataset Visualization**  
-   - Display sample images from each class  
-   
-3️⃣ **Baseline Model Training**  
-   - Build a CNN model  
-   - Normalize pixel values **(0 to 1)**  
-   - Train for **~20 epochs** and evaluate performance  
-   
-4️⃣ **Addressing Overfitting/Underfitting**  
-   - Apply **data augmentation** and retrain the model  
-   - Train for **~20 epochs** again and analyze improvements  
-   
-5️⃣ **Class Distribution Analysis**  
-   - Identify class imbalances  
-   
-6️⃣ **Handling Class Imbalance**  
-   - Use **Augmentor** to balance dataset  
-   - Generate synthetic samples  
-   
-7️⃣ **Final Model Training**  
-   - Train on the rectified dataset for **~30 epochs**  
-   - Assess improvements in model performance  
-
----
-
-## 🔍 Key Findings
-✅ Examined dataset class distribution  
-✅ Addressed underfitting/overfitting with augmentation  
-✅ Balanced the dataset with synthetic data  
-✅ Improved model accuracy and robustness  
-
----
-
-## 🛠️ Technologies Used
-- 🐍 **Python** (TensorFlow/Keras, NumPy, Pandas, Matplotlib, OpenCV)
-- 🧠 **Deep Learning** (CNNs for image classification)
-- 🎨 **Data Augmentation** (Keras ImageDataGenerator, Augmentor Library)
-
----
-
-## 🎯 Conclusion
-This project showcases how **deep learning can assist in melanoma detection**, helping dermatologists with **faster and more accurate diagnoses**. Future improvements could involve **transfer learning** or **ensemble models** to further enhance accuracy.
-
----
-
-## 👥 Contributors
-- ✨ Vinay Dodla
-- 📧 dodlavinay012@gmail.com
- 
-
-## 🙌 Acknowledgment
-This project leverages **publicly available ISIC data** and contributes towards advancements in **AI-powered skin cancer detection**.
+## Running Locally
+Open `Melanoma recognition.ipynb` in Jupyter or Google Colab. The notebook downloads the ISIC dataset automatically from Google Drive via a shell cell. Requires `tensorflow`, `numpy`, `pandas`, `matplotlib`, `Pillow`, and `Augmentor` (`pip install Augmentor`). Runs end-to-end on Colab's free GPU tier; expect the augmentation/rebalancing step to take a few minutes since it generates 500 synthetic images per class.
